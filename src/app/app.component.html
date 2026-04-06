@@ -17,6 +17,32 @@
         </p>
       </section>
 
+      <section class="matrix-counter-section">
+        <div class="matrix-counter-card">
+          <div class="matrix-scanlines"></div>
+          <p class="matrix-label">// SYSTEM COUNTER INITIALIZED</p>
+          <div class="matrix-display">
+            <span class="matrix-bracket">[</span>
+            <span class="matrix-value" [class.matrix-value--positive]="count > 0" [class.matrix-value--negative]="count < 0">{{ count }}</span>
+            <span class="matrix-bracket">]</span>
+          </div>
+          <div class="matrix-controls">
+            <button class="matrix-btn matrix-btn--decrement" (click)="decrement()" aria-label="Decrement counter">
+              <span class="matrix-btn-symbol">−</span>
+              <span class="matrix-btn-label">DECREMENT</span>
+            </button>
+            <button class="matrix-btn matrix-btn--increment" (click)="increment()" aria-label="Increment counter">
+              <span class="matrix-btn-symbol">+</span>
+              <span class="matrix-btn-label">INCREMENT</span>
+            </button>
+          </div>
+          <p class="matrix-status">
+            <span class="matrix-cursor">▮</span>
+            STATUS: <span [class.matrix-ok]="count >= 0" [class.matrix-warn]="count < 0">{{ count >= 0 ? 'NOMINAL' : 'WARNING' }}</span>
+          </p>
+        </div>
+      </section>
+
       <section class="features-section">
         <h2>Tech Stack</h2>
         <div class="features-grid">

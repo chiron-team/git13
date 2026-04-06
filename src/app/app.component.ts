@@ -11,6 +11,17 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'Testing';
   version = '1.0.0';
+
+  // Matrix Counter
+  count = 0;
+
+  increment(): void {
+    this.count++;
+  }
+
+  decrement(): void {
+    this.count--;
+  }
   features = [
     {
       title: 'Angular',
