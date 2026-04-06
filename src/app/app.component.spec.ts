@@ -1,10 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { StorageService } from './storage.service';
 
 describe('AppComponent', () => {
+  let storageServiceSpy: jasmine.SpyObj<StorageService>;
+
   beforeEach(async () => {
+    storageServiceSpy = jasmine.createSpyObj('StorageService', [
+      'loadCounter',
+      'saveCounter',
+      'clearCounter',
+    ]);
+    // Default: no previously saved value.
+    storageServiceSpy.loadCounter.and.returnValue(null);
+
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [{ provide: StorageService, useValue: storageServiceSpy }],
     }).compileComponents();
   });
 
@@ -39,10 +51,25 @@ describe('AppComponent', () => {
     expect(app.version).toBe('1.0.0');
   });
 
-  it('should initialise counter at zero', () => {
+  it('should initialise counter at zero when no persisted value exists', () => {
     const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges(); // triggers ngOnInit
     const app = fixture.componentInstance;
     expect(app.count).toBe(0);
+  });
+
+  it('should restore the counter from the persisted value on init', () => {
+    storageServiceSpy.loadCounter.and.returnValue(7);
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges(); // triggers ngOnInit
+    expect(fixture.componentInstance.count).toBe(7);
+  });
+
+  it('should restore a negative counter from the persisted value on init', () => {
+    storageServiceSpy.loadCounter.and.returnValue(-3);
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.count).toBe(-3);
   });
 
   it('should increment the counter', () => {
@@ -59,6 +86,30 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     app.decrement();
     expect(app.count).toBe(-1);
+  });
+
+  it('should save the counter after increment', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.increment();
+    expect(storageServiceSpy.saveCounter).toHaveBeenCalledWith(1);
+  });
+
+  it('should save the counter after decrement', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.decrement();
+    expect(storageServiceSpy.saveCounter).toHaveBeenCalledWith(-1);
+  });
+
+  it('should save the updated counter on every increment', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.increment();
+    app.increment();
+    app.increment();
+    expect(storageServiceSpy.saveCounter).toHaveBeenCalledTimes(3);
+    expect(storageServiceSpy.saveCounter).toHaveBeenCalledWith(3);
   });
 
   it('should render increment and decrement buttons', () => {
@@ -95,5 +146,14 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const display = compiled.querySelector('.matrix-value') as HTMLElement;
     expect(display.textContent?.trim()).toBe('0');
+  });
+
+  it('should display the restored counter value in the matrix display', () => {
+    storageServiceSpy.loadCounter.and.returnValue(42);
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const display = compiled.querySelector('.matrix-value') as HTMLElement;
+    expect(display.textContent?.trim()).toBe('42');
   });
 });
