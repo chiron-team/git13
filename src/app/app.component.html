@@ -1,0 +1,72 @@
+<div class="app-container">
+  <header class="app-header">
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <p class="subtitle">A production-ready Angular application</p>
+      <span class="version">v{{ version }}</span>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="container">
+      <section class="welcome-section">
+        <h2>Welcome to {{ title }}! 🚀</h2>
+        <p>
+          Your Angular application is up and running. This is a minimal, production-ready setup
+          following best practices.
+        </p>
+      </section>
+
+      <section class="features-section">
+        <h2>Tech Stack</h2>
+        <div class="features-grid">
+          <div class="feature-card" *ngFor="let feature of features">
+            <div class="feature-icon">{{ feature.icon }}</div>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="getting-started">
+        <h2>Getting Started</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Edit the Component</h3>
+              <p>
+                Start by editing <code>src/app/app.component.ts</code> or
+                <code>src/app/app.component.html</code>
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Generate Components</h3>
+              <p>
+                Use Angular CLI: <code>ng generate component component-name</code>
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Build for Production</h3>
+              <p>
+                Run <code>npm run build:prod</code> to create an optimized build
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>&copy; {{ currentYear }} {{ title }}. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
