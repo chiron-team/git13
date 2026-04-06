@@ -12,10 +12,14 @@ import { StorageService } from './storage.service';
 export class AppComponent implements OnInit {
   title = 'Testing';
   version = '1.0.0';
+  currentYear = new Date().getFullYear();
 
-  // Matrix Counter
+  // ── Counter ────────────────────────────────────────────────────────────────
+
+  /** Current counter value. Starts at zero and can be positive or negative. */
   count = 0;
 
+<<<<<<< engineer-g/jhsvubdhdhysdbdoolb4-implement-localhost-persistence
   constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {
@@ -25,16 +29,25 @@ export class AppComponent implements OnInit {
     }
   }
 
+=======
+  /** Increases the counter value by one. */
+>>>>>>> main
   increment(): void {
     this.count++;
     this.storageService.saveCounter(this.count);
   }
 
+  /** Decreases the counter value by one. */
   decrement(): void {
     this.count--;
     this.storageService.saveCounter(this.count);
   }
 
+<<<<<<< engineer-g/jhsvubdhdhysdbdoolb4-implement-localhost-persistence
+=======
+  // ── Features ───────────────────────────────────────────────────────────────
+
+>>>>>>> main
   features = [
     {
       title: 'Angular',
@@ -57,6 +70,4 @@ export class AppComponent implements OnInit {
       icon: '🎨',
     },
   ];
-
-  currentYear = new Date().getFullYear();
 }
