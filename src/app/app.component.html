@@ -23,22 +23,38 @@
           <p class="matrix-label">// SYSTEM COUNTER INITIALIZED</p>
           <div class="matrix-display">
             <span class="matrix-bracket">[</span>
-            <span class="matrix-value" [class.matrix-value--positive]="count > 0" [class.matrix-value--negative]="count < 0">{{ count }}</span>
+            <span
+              class="matrix-value"
+              [class.matrix-value--positive]="count > 0"
+              [class.matrix-value--negative]="count < 0"
+              >{{ count }}</span
+            >
             <span class="matrix-bracket">]</span>
           </div>
           <div class="matrix-controls">
-            <button class="matrix-btn matrix-btn--decrement" (click)="decrement()" aria-label="Decrement counter">
+            <button
+              class="matrix-btn matrix-btn--decrement"
+              (click)="decrement()"
+              aria-label="Decrement counter"
+            >
               <span class="matrix-btn-symbol">−</span>
               <span class="matrix-btn-label">DECREMENT</span>
             </button>
-            <button class="matrix-btn matrix-btn--increment" (click)="increment()" aria-label="Increment counter">
+            <button
+              class="matrix-btn matrix-btn--increment"
+              (click)="increment()"
+              aria-label="Increment counter"
+            >
               <span class="matrix-btn-symbol">+</span>
               <span class="matrix-btn-label">INCREMENT</span>
             </button>
           </div>
           <p class="matrix-status">
             <span class="matrix-cursor">▮</span>
-            STATUS: <span [class.matrix-ok]="count >= 0" [class.matrix-warn]="count < 0">{{ count >= 0 ? 'NOMINAL' : 'WARNING' }}</span>
+            STATUS:
+            <span [class.matrix-ok]="count >= 0" [class.matrix-warn]="count < 0">{{
+              count >= 0 ? 'NOMINAL' : 'WARNING'
+            }}</span>
           </p>
         </div>
       </section>
@@ -71,18 +87,14 @@
             <div class="step-number">2</div>
             <div class="step-content">
               <h3>Generate Components</h3>
-              <p>
-                Use Angular CLI: <code>ng generate component component-name</code>
-              </p>
+              <p>Use Angular CLI: <code>ng generate component component-name</code></p>
             </div>
           </div>
           <div class="step">
             <div class="step-number">3</div>
             <div class="step-content">
               <h3>Build for Production</h3>
-              <p>
-                Run <code>npm run build:prod</code> to create an optimized build
-              </p>
+              <p>Run <code>npm run build:prod</code> to create an optimized build</p>
             </div>
           </div>
         </div>

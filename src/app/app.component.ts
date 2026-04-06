@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   /** Current counter value. Starts at zero and can be positive or negative. */
   count = 0;
 
-<<<<<<< engineer-g/jhsvubdhdhysdbdoolb4-implement-localhost-persistence
   constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {
@@ -29,9 +28,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-=======
   /** Increases the counter value by one. */
->>>>>>> main
   increment(): void {
     this.count++;
     this.storageService.saveCounter(this.count);
@@ -43,11 +40,8 @@ export class AppComponent implements OnInit {
     this.storageService.saveCounter(this.count);
   }
 
-<<<<<<< engineer-g/jhsvubdhdhysdbdoolb4-implement-localhost-persistence
-=======
   // ── Features ───────────────────────────────────────────────────────────────
 
->>>>>>> main
   features = [
     {
       title: 'Angular',
