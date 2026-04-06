@@ -11,17 +11,25 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'Testing';
   version = '1.0.0';
+  currentYear = new Date().getFullYear();
 
-  // Matrix Counter
+  // ── Counter ────────────────────────────────────────────────────────────────
+
+  /** Current counter value. Starts at zero and can be positive or negative. */
   count = 0;
 
+  /** Increases the counter value by one. */
   increment(): void {
     this.count++;
   }
 
+  /** Decreases the counter value by one. */
   decrement(): void {
     this.count--;
   }
+
+  // ── Features ───────────────────────────────────────────────────────────────
+
   features = [
     {
       title: 'Angular',
@@ -44,6 +52,4 @@ export class AppComponent {
       icon: '🎨',
     },
   ];
-
-  currentYear = new Date().getFullYear();
 }
